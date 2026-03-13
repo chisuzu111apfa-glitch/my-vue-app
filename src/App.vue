@@ -1,24 +1,26 @@
 <script setup>
-import { ref, computed } from 'vue'
-
-const score = ref(0)
-const evaluation = computed(() => {
-  return score.value >= 60 ? '合格' : '不合格'
-})
+import { ref } from 'vue'
+const isRed = ref(true)
+const isBlue = ref(true)
+function toggleRed() {
+  isRed.value = !isRed.value
+}
+function toggleBlue() {
+  isBlue.value = !isBlue.value
+}
 </script>
 
 <template>
-  <p>{{ evaluation }}</p>
-  <input v-model="score" type="number" />
+  <div :class="{ red: isRed, container: isBlue }">Hello World</div>
+  <button @click="toggleRed">Toggle Red</button>
+  <button @click="toggleBlue">Toggle Blue</button>
 </template>
 
 <style>
-.container {
-  padding: 20px;
+.red {
+  color: red;
 }
-input {
-  display: block;
-  margin-bottom: 10px;
-  padding: 5px;
+.container {
+  background-color: blue;
 }
 </style>
